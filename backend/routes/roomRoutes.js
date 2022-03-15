@@ -48,7 +48,8 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
     let room = new Room({
         name: req.body.name,
         description: req.body.description,
-        image: `${basePath}${fileName}`,
+        // image: `${basePath}${fileName}`,
+        image: req.body.image,
         price: req.body.price,
         category: req.body.category,
         countInStock: req.body.countInStock,
@@ -90,7 +91,8 @@ router.put('/:id', uploadOptions.single, async (req, res) => {
         {
             name: req.body.name,
             description: req.body.description,
-            image: imagepath,
+            // image: imagepath,
+            image: req.body.image,
             price: req.body.price,
             category: req.body.category,
             countInStock: req.body.countInStock,
