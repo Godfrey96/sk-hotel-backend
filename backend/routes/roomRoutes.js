@@ -33,7 +33,7 @@ const router = express.Router();
 // const uploadOptions = multer({ storage: storage });
 
 // Create a new room
-router.post('/', uploadOptions.single('image'), async (req, res) => {
+router.post('/', async (req, res) => {
     const category = await Category.findById(req.body.category);
     if (!category) return res.status(400).send('Invalid Category');
 
@@ -65,7 +65,7 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
 });
 
 // update an existing room
-router.put('/:id', uploadOptions.single, async (req, res) => {
+router.put('/:id', async (req, res) => {
     if (!mongoose.isValidObjectId(req.params.id)) {
         return res.status(400).send('Invalid Room Id');
     }
