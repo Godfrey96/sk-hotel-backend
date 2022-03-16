@@ -1,36 +1,36 @@
 import exporess from 'express-async-handler';
 import mongoose from 'mongoose';
 import express from 'express';
-import multer from 'multer';
+// import multer from 'multer';
 import Room from '../models/roomModel.js';
 import Category from '../models/categoryModel.js';
 
 const router = express.Router();
 
-const FILE_TYPE_MAP = {
-    'image/png': 'png',
-    'image/jpeg': 'jpeg',
-    'image/jpg': 'jpg'
-};
+// const FILE_TYPE_MAP = {
+//     'image/png': 'png',
+//     'image/jpeg': 'jpeg',
+//     'image/jpg': 'jpg'
+// };
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const isValid = FILE_TYPE_MAP[file.mimetype];
-        let uploadError = new Error('invalid image type');
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         const isValid = FILE_TYPE_MAP[file.mimetype];
+//         let uploadError = new Error('invalid image type');
 
-        if (isValid) {
-            uploadError = null;
-        }
-        cb(uploadError, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        const fileName = file.originalname.split(' ').join('-');
-        const extension = FILE_TYPE_MAP[file.mimetype];
-        cb(null, `${fileName}-${Date.now()}.${extension}`);
-    }
-});
+//         if (isValid) {
+//             uploadError = null;
+//         }
+//         cb(uploadError, 'uploads/');
+//     },
+//     filename: function (req, file, cb) {
+//         const fileName = file.originalname.split(' ').join('-');
+//         const extension = FILE_TYPE_MAP[file.mimetype];
+//         cb(null, `${fileName}-${Date.now()}.${extension}`);
+//     }
+// });
 
-const uploadOptions = multer({ storage: storage });
+// const uploadOptions = multer({ storage: storage });
 
 // Create a new room
 router.post('/', uploadOptions.single('image'), async (req, res) => {
