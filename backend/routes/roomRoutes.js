@@ -37,13 +37,13 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
     const category = await Category.findById(req.body.category);
     if (!category) return res.status(400).send('Invalid Category');
 
-    const file = req.file;
-    if (!file) {
-        return res.status(400).send('No image in the request');
-    }
+    // const file = req.file;
+    // if (!file) {
+    //     return res.status(400).send('No image in the request');
+    // }
 
-    const fileName = req.file.filename;
-    const basePath = `${req.protocol}://${req.get('host')}/uploads/`;
+    // const fileName = req.file.filename;
+    // const basePath = `${req.protocol}://${req.get('host')}/uploads/`;
 
     let room = new Room({
         name: req.body.name,
@@ -75,16 +75,16 @@ router.put('/:id', uploadOptions.single, async (req, res) => {
     const room = await Room.findById(req.params.id);
     if (!room) return res.status(400).send('Invalid Room!');
 
-    const file = req.file;
-    let imagepath;
+    // const file = req.file;
+    // let imagepath;
 
-    if (file) {
-        const fileName = file.filename;
-        const basePath = `${req.protocol}://${req.get('host')}/uploads/`;
-        imagepath = `${basePath}${fileName}`;
-    } else {
-        imagepath = room.image;
-    }
+    // if (file) {
+    //     const fileName = file.filename;
+    //     const basePath = `${req.protocol}://${req.get('host')}/uploads/`;
+    //     imagepath = `${basePath}${fileName}`;
+    // } else {
+    //     imagepath = room.image;
+    // }
 
     const updateRoom = await Room.findByIdAndUpdate(
         req.params.id,
