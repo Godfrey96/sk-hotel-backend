@@ -34,11 +34,11 @@ const roomSchema = mongoose.Schema({
     },
     fromDate: {
         type: Date,
-        reqired: true
+        reqired: false
     },
     toDate: {
         type: Date,
-        required: true
+        required: false
     },
     dateCreated: {
         type: Date,
