@@ -12,9 +12,9 @@ const createOrder = asyncHandler(async (req, res) => {
     const orderItemsIds = Promise.all(req.body.orderItems.map(async orderItem => {
         let newOrderItem = new OrderItem({
             quantity: orderItem.quantity,
-            fromDate: orderItem.fromDate,
-            toDate: orderItem.toDate,
             room: orderItem.room
+            // fromDate: orderItem.fromDate,
+            // toDate: orderItem.toDate,
         });
 
         newOrderItem = await newOrderItem.save();
